@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export default function Goodslist() {
   useEffect(() => {
-    axios.get('https://github.com/wangchao2000').then(res => {
+    axios.get('https://api.github.com/repos/wangchao2000/github.com/wangchao2000/learngit').then(res => {
       console.log(res)
     })
 

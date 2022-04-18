@@ -6,7 +6,7 @@ import {
   Login,
   Register
 } from '../pages'
-
+//Detailpage Listpage
 export default function index() {
   return (
     <Router>
