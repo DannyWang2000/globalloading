@@ -3,7 +3,8 @@ import { Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import {
   List,
-  Login
+  Login,
+  Register
 } from '../pages'
 
 export default function index() {
@@ -11,12 +12,13 @@ export default function index() {
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/" component={List}/>
-        {/* <Route path="/" render={() =>
+        <Route path="/register" component={Register} />
+        {/* <Route path="/" component={List}/> */}
+        <Route path="/" render={() =>
           localStorage.getItem("token") ?
             <List></List> :
             <Redirect to="login" />
-        } /> */}
+        } />
       </Switch>
     </Router>
   )
