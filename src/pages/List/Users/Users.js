@@ -1,38 +1,38 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 // import { NavLink } from 'react-router-dom'
-import { Input, message, List } from 'antd';
+import { Input, message, List, Button } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Link, NavLink } from 'react-router-dom';
 const { Search } = Input;
 
 
 
-export default function Users() {
+export default function Users(props) {
   const [username, setUsername] = useState([])
-  // const [List, setList] = useState([])
-  // useEffect(() => {
-  //   axios.get('https://api.github.com/users/wangchao2000/repos').then(res => {
-  //     console.log(res)
-  //     setList(res.data)
-  //   })
-  // }, [])
+  const [useData, setUseData] = useState([])
 
 
-  const onSearch = username => {
-    // axios
-    // .get(`https://api.github.com/users/${username}`)
-    // .then(resp => {
-    //   props.onSubmit(resp.data)
-    //   setUsername('')
-    // })
-    console.log(username)
-    axios.get(`https://api.github.com/users/${username}/repos`).then(res => {
+  const onSearch = value => {
+    // console.log(value)
+    axios.get(`https://api.github.com/users/${value}/repos`).then(res => {
       console.log(res);
-      if (res.data !== [] && res.request.status === 200) {
+      if (res.request.status === 200) {
         message.success('查询成功')
         setUsername(res.data)
       } else
         message.error('查询失败,GitHub暂无该用户')
+    })
+  }
+
+  const showDetail = (item) => {
+    // console.log(item.full_name);
+    axios.get(`https://api.github.com/repos/${item.full_name}/contents`).then(res => {
+      setUseData(res.data)
+      // console.log(useData);
+      // props.history.push(`/goodslist?${item.full_name}`)
+      props.history.push({ pathname: '/goodslist', state: { info: item.full_name } })
+      // console.log(res.data);
     })
   }
 
@@ -58,7 +58,7 @@ export default function Users() {
         <InfiniteScroll
           dataLength={username.length}
           // next={setUsername}
-          style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
+          style={{ display: 'flex', flexDirection: 'column-reverse' }}
           inverse={true} //
           hasMore={true}
           // loader={<h4>Loading...</h4>}
@@ -69,36 +69,26 @@ export default function Users() {
             dataSource={
               username
             }
-            // renderItem={item => (
-            //   <List.Item>
-            //     <List.Item.Meta
-            //       // avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-            //       // title={<a href="https://ant.design">{item.title}</a>}
-            //       // description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-            //     />
-            //     {/* {
-            //       username.map((item) => {
-            //         return <li key={item.id}>{item.name}</li>
-            //       })
-            //     } */}
-            //   </List.Item>
-            // )}
-            renderItem={item => (
-              <List.Item>
+            renderItem={(item, index) => (
+              <List.Item >
                 {item.name}
-                {<button style={{float:'right'}}>1</button>}
+                {<Button
+                  type="primary"
+                  onClick={() => showDetail(item)}
+                  style={{ float: 'right' }}
+                >查看详情</Button>}
               </List.Item>
             )}
           />
         </InfiniteScroll>
       </div>
-      {/* <ul>
+      <ul>
         {
-          username.map((item) => {
-            return <li key={item.id}>{item.name}</li>
+          useData.map((item) => {
+            return <li key={item.name}>{item.name}</li>
           })
         }
-      </ul> */}
+      </ul>
     </div>
   )
 }

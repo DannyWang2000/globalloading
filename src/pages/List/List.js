@@ -31,7 +31,7 @@ export default function List() {
             <Route path="/users" component={Users} />
             <Route path="/goodslist" component={Goodslist} />
 
-            <Redirect to="/users" from='/' exact />
+            {/* <Redirect to="/users" from='/' exact /> */}
             <Route path="*" component={Notfound} />
 
           </Switch>

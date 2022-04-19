@@ -11,7 +11,6 @@ export default function index() {
   return (
     <Router>
       <Switch>
-            {localStorage.clear()}
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         {/* <Route path="/" component={List}/> */}
