@@ -27,6 +27,7 @@ export default function List() {
           }}
         >
           <Switch>
+            {/* {localStorage.clear()} */}
             <Route path="/users" component={Users} />
             <Route path="/goodslist" component={Goodslist} />
 

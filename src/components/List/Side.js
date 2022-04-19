@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom';
 // import axios from 'axios'
 import { Layout, Menu } from 'antd';
 import {
   UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
+
 } from '@ant-design/icons';
 const { Sider } = Layout;
 
@@ -13,7 +12,7 @@ const menuList = [
   {
     id: "1",
     path: "/users",
-    title: "Users",
+    title: "搜索用户仓库",
     icon: <UserOutlined />
   },
   {
