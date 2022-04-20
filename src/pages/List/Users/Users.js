@@ -3,14 +3,13 @@ import axios from 'axios'
 // import { NavLink } from 'react-router-dom'
 import { Input, message, List, Button } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Link, NavLink } from 'react-router-dom';
 const { Search } = Input;
 
 
 
 export default function Users(props) {
   const [username, setUsername] = useState([])
-  const [useData, setUseData] = useState([])
+  // const [useData, setUseData] = useState([])
 
 
   const onSearch = value => {
@@ -27,13 +26,13 @@ export default function Users(props) {
 
   const showDetail = (item) => {
     // console.log(item.full_name);
-    axios.get(`https://api.github.com/repos/${item.full_name}/contents`).then(res => {
-      setUseData(res.data)
+    // axios.get(`https://api.github.com/repos/${item.full_name}/contents`).then(res => {
+      // setUseData(res.data)
       // console.log(useData);
       // props.history.push(`/goodslist?${item.full_name}`)
-      props.history.push({ pathname: '/goodslist', state: { info: item.full_name } })
+      props.history.push({ pathname: '/detail', state: { info: item.full_name } })
       // console.log(res.data);
-    })
+    // })
   }
 
 
@@ -82,13 +81,13 @@ export default function Users(props) {
           />
         </InfiniteScroll>
       </div>
-      <ul>
+      {/* <ul>
         {
           useData.map((item) => {
             return <li key={item.name}>{item.name}</li>
           })
         }
-      </ul>
+      </ul> */}
     </div>
   )
 }

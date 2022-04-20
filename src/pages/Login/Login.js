@@ -21,21 +21,6 @@ export default function Login(props) {
     //   //   props.history.push('/users')
     //   // }
     // })
-    // LoginApi({
-    //   username: values.username,
-    //   password: values.password,
-    // }).then((res) => {
-    //   // console.log(res)
-    //   if (res.meta.status !== 200) {
-    //     message.error('登陆失败')
-    //   } else {
-    //     message.success('登陆成功')
-    //     localStorage.setItem('token',res.data['token'])
-    //     setTimeout(() => {
-    //       navigate('/list')
-    //     }, 1500)
-    //   }
-    // })
     // console.log('Success:', values)
 
 

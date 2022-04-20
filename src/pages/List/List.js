@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom'
 import { Switch } from 'react-router-dom'
 import Side from '../../components/List/Side'
 import Top from '../../components/List/Top'
-import Goodslist from './Goodslist/Goodslist'
 import Notfound from './Notfound/Notfound'
 import Users from './Users/Users'
 
@@ -27,11 +26,8 @@ export default function List() {
           }}
         >
           <Switch>
-            {/* {localStorage.clear()} */}
             <Route path="/users" component={Users} />
-            <Route path="/goodslist" component={Goodslist} />
-
-            {/* <Redirect to="/users" from='/' exact /> */}
+            <Redirect to="/users" from='/' exact />
             <Route path="*" component={Notfound} />
 
           </Switch>
