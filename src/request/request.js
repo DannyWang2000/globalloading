@@ -2,8 +2,8 @@ import axios from 'axios'
 
 // 配置项
 const axiosOption = {
-    baseURL: 'https://dev-v2.bundleb2b.net/apidoc-server/app/mock/55/api/',
-    timeout: 5000
+  baseURL: 'https://api.github.com',
+  timeout: 5000
 }
 
 // 创建一个单例
@@ -20,7 +20,7 @@ instance.interceptors.request.use(function (config) {
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
   // 对响应数据做点什么
-  return response.data;
+  return response;
 }, function (error) {
   // 对响应错误做点什么
   return Promise.reject(error);

@@ -1,7 +1,6 @@
-// import request from './request'
+import request from './request'
 
-// export const LoginApi = (params) => request.post('/login', params)
+export const GetUsersApi = (name) => request.get(`/users/${name}/repos`)
+export const GetDetailApi = (fullName) => request.get(`/repos/${fullName}/contents`)
 
-// export const GetGoodsApi = (params) => request.get('/goods', {params})
-// export const LoginApi = (params) => request.get('/login', params)
 
