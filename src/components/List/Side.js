@@ -1,11 +1,14 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import { NavLink } from 'react-router-dom'
+import { Layout, Menu } from 'antd'
 import {
   UserOutlined,
 
-} from '@ant-design/icons';
-const { Sider } = Layout;
+} from '@ant-design/icons'
+
+import { connect } from 'react-redux'
+
+const { Sider } = Layout
 
 const menuList = [
   {
@@ -22,11 +25,9 @@ const menuList = [
   // }
 ]
 
-export default function Side() {
-
-
+function Side(props) {
   return (
-    <Sider trigger={null} collapsible collapsed={false}>
+    <Sider trigger={null} collapsible collapsed={props.isCollapsed}>
       <div className="logo" />
       <Menu theme="dark" mode="inline"
         defaultSelectedKeys={['1']}>
@@ -46,3 +47,11 @@ export default function Side() {
     </Sider>
   )
 }
+
+const mapStateToProps = ({ collapsedReducer: { isCollapsed } }) => {
+  return {
+    isCollapsed
+  }
+}
+
+export default connect(mapStateToProps)(Side)
