@@ -2,29 +2,30 @@ import React, { useState } from 'react'
 import { Input, message, List, Button } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { GetUsersApi } from '../../../request/api';
+import { connect } from 'react-redux'
+
+
 const { Search } = Input;
 
 
 
-export default function Users(props) {
+function Users(props) {
   const [username, setUsername] = useState([])
 
 
   const onSearch = value => {
     GetUsersApi(value).then(res => {
-      console.log(res)
-      if (res.status !== 200) {
-        message.error('查询失败')
-      } else {
-        message.success('查询成功')
-        setUsername(res.data)
-      }
+      message.success('查询成功')
+      setUsername(res.data)
+      // console.log(res.data)
+      // props.mapDispatchToProps(res.data)
     })
   }
 
   const showDetail = (item) => {
     props.history.push({ pathname: '/detail', state: { info: item.full_name } })
   }
+
 
 
   return (
@@ -48,15 +49,14 @@ export default function Users(props) {
         <InfiniteScroll
           dataLength={username.length}
           style={{ display: 'flex', flexDirection: 'column-reverse' }}
-          inverse={true} //
+          inverse={true}
           hasMore={true}
           scrollableTarget="scrollableDiv"
         >
           <List
             itemLayout="horizontal"
-            dataSource={
-              username
-            }
+            dataSource={username}
+
             renderItem={(item, index) => (
               <List.Item >
                 {item.name}
@@ -73,3 +73,19 @@ export default function Users(props) {
     </div>
   )
 }
+
+// const mapStateToProps = ({ dataReducer: { arr } }) => {
+//   return {
+//     arr
+//   }
+// }
+
+// const mapDispatchToProps = (info) => {
+//   return {
+//     arr: [...info],
+//     type: "search"
+//   }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Users)
+export default Users
