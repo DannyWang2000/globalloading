@@ -3,7 +3,9 @@ const initState = {
 }
 
 const collapsedReducer = (state = initState, action) => {
-    switch (action.type) {
+    // console.log(action);
+    const { type } = action
+    switch (type) {
         case 'changeCollapsed':
             const newState = { ...state }
             newState.isCollapsed = !newState.isCollapsed

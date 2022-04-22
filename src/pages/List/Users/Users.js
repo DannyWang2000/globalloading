@@ -10,15 +10,15 @@ const { Search } = Input;
 
 
 function Users(props) {
-  const [username, setUsername] = useState([])
+  // const [username, setUsername] = useState([])
 
 
   const onSearch = value => {
     GetUsersApi(value).then(res => {
       message.success('查询成功')
-      setUsername(res.data)
-      // console.log(res.data)
-      // props.mapDispatchToProps(res.data)
+      // setUsername(res.data)
+      console.log(res.data)
+      props.search(res.data)
     })
   }
 
@@ -26,7 +26,7 @@ function Users(props) {
     props.history.push({ pathname: '/detail', state: { info: item.full_name } })
   }
 
-
+  // console.log(props)
 
   return (
     <div>
@@ -47,7 +47,7 @@ function Users(props) {
         }}
       >
         <InfiniteScroll
-          dataLength={username.length}
+          dataLength={props.arr.length}
           style={{ display: 'flex', flexDirection: 'column-reverse' }}
           inverse={true}
           hasMore={true}
@@ -55,9 +55,9 @@ function Users(props) {
         >
           <List
             itemLayout="horizontal"
-            dataSource={username}
+            dataSource={props.arr}
 
-            renderItem={(item, index) => (
+            renderItem={(item) => (
               <List.Item >
                 {item.name}
                 {<Button
@@ -74,18 +74,20 @@ function Users(props) {
   )
 }
 
-// const mapStateToProps = ({ dataReducer: { arr } }) => {
-//   return {
-//     arr
-//   }
-// }
+const mapStateToProps = ({ dataReducer: { arr } }) => {
+  return {
+    arr
+  }
+}
 
-// const mapDispatchToProps = (info) => {
-//   return {
-//     arr: [...info],
-//     type: "search"
-//   }
-// }
+const mapDispatchToProps = {
+  search(data) {
+    return {
+      type: 'search',
+      data
+    };
+  }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Users)
-export default Users
+export default connect(mapStateToProps, mapDispatchToProps)(Users)
+// export default Users

@@ -8,7 +8,7 @@ export default function Login(props) {
     if (values.username === "admin" && values.password === "123456") {
       message.success('登录成功')
       localStorage.setItem('token', 'wc')
-      console.log(props);
+      // console.log(props);
       props.history.push('/users')
     } else {
       message.error('登录失败')
