@@ -1,63 +1,42 @@
 import React from 'react'
-import { Form, Input, Button, message } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import './login.css'
+import { connect } from 'react-redux'
+import { loginAction } from '../../actions/login'
+import { Button, Spin } from 'antd'
 
-export default function Login(props) {
-  const onFinish = (values) => {
-    if (values.username === "admin" && values.password === "123456") {
-      message.success('登录成功')
-      localStorage.setItem('token', 'wc')
-      // console.log(props);
-      props.history.push('/users')
-    } else {
-      message.error('登录失败')
+import './Login.css'
+
+
+function Login(props) {
+
+    const doLogin = () => {
+        props.loginAction(props)
+        // console.log(props)
+        // localStorage.setItem("token", 'wc')
+        // props.history.push('/')
     }
-  }
 
-  return (
-    <div className="login">
-      <div className="login_box">
-        <Form
-          name="basic"
-          initialValues={{
-            remember: true,
-          }}
-          onFinish={onFinish}
-          autoComplete="off"
-        >
-          <Form.Item
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: '请输入用户名!',
-              },
-            ]}
-            initialValue="admin"
-          >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="请输入用户名" />
-          </Form.Item>
 
-          <Form.Item
-            name="password"
-            initialValue="123456"
-            rules={[
-              {
-                required: true,
-                message: '请输入密码!',
-              },
-            ]}
-          >
-            <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder="请输入密码" />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" block>
-              登陆
-            </Button>
-          </Form.Item>
-        </Form>
-      </div>
-    </div>
-  )
+    return (
+        <div>
+            <Spin size="large" spinning={props.Loading} />
+            <div>
+                <Button type="primary" onClick={doLogin}>登陆</Button>
+            </div>
+            {/* {
+                props.isLoading &&
+                <div className='loading'>Loading...</div>
+            } */}
+        </div>
+    )
 }
+
+const mapStateToProps = (state) => {
+    // console.log(state)
+    return {
+        ...state.login,
+        ...state.global,
+        ...state.isLoading
+    }
+}
+
+export default connect(mapStateToProps, { loginAction })(Login)

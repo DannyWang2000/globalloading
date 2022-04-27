@@ -6,21 +6,23 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended"
+        // "airbnb"
     ],
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": true
+            "jsx": true,
         },
         "ecmaVersion": "latest",
-        "sourceType": "module"
+        "sourceType": "module",
     },
     "plugins": [
         "react"
     ],
     "rules": {
-        "no-unused-vars":0,
+        "no-undef": 0,
+        "react/jsx-key": 0,
         "react/prop-types": 0,
-        "no-case-declarations":0,
-        "no-undef":0
+        "quotes": 0,
+        "quote-props": 0
     }
 }

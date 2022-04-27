@@ -5,17 +5,15 @@ import {
   MenuFoldOutlined,
 } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
-const { Header } = Layout;
+const { Header } = Layout
 
-
-function Top(props) {
+function Top() {
   const [collapsed, setcollapsed] = useState(false)
   const changeCollapsed = () => {
     setcollapsed(!collapsed)
-    props.changeCollapsed()
-
+    // props.changeCollapsed()
   }
   return (
     <Header className="site-layout-background" style={{ padding: '0 16px' }}>
@@ -39,18 +37,19 @@ function Top(props) {
   )
 }
 
-const mapStateToProps = ({ collapsedReducer: { isCollapsed } }) => {
-  return {
-    isCollapsed
-  }
-}
+// const mapStateToProps = ({ collapsedReducer: { isCollapsed } }) => {
+//   return {
+//     isCollapsed,
+//   }
+// }
 
-const mapDispatchToProps = {
-  changeCollapsed() {
-    return {
-      type: "changeCollapsed"
-    }
-  }
-}
+// const mapDispatchToProps = {
+//   changeCollapsed() {
+//     return {
+//       type: "changeCollapsed",
+//     }
+//   },
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Top)
+// export default connect(mapStateToProps, mapDispatchToProps)(Top)
+export default Top

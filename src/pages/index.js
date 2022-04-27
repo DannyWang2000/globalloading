@@ -1,3 +1,9 @@
-export { default as List } from './List/List'
-export { default as Login } from './Login/Login'
-export { default as Detail } from './Detail/Detail'
+export { default as Detail } from "./Detail/Detail"
+export { default as Goods } from "./Goods/Goods"
+export { default as News } from "./News/News"
+export { default as Users } from "./Users/Users"
+export { default as List } from "./Users/List/List"
+export { default as Shop } from "./Users/Shop/Shop"
+export { default as Clothes } from "./Goods/Clothes/Clothes"
+export { default as Meat } from "./Goods/Meat/Meat"
+export { default as Phone } from "./Goods/Phone/Phone"

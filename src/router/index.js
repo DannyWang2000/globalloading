@@ -1,24 +1,94 @@
-import React from 'react'
-import { Redirect } from 'react-router-dom'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import {
+  Users,
+  Detail,
+  Goods,
+  News,
   List,
-  Login,
-  Detail
+  Shop,
+  Phone,
+  Meat,
+  Clothes
 } from '../pages'
-export default function index() {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/Detail" component={Detail} />
-        {/* <Route path="/" component={List}/> */}
-        <Route path="/" render={() =>
-          localStorage.getItem("token") ?
-            <List></List> :
-            <Redirect to="login" />
-        } />
-      </Switch>
-    </Router>
-  )
-}
+
+const routes = [
+  {
+    path: "/users",
+    component: Users,
+    title: "Users",
+    children: [
+      {
+        path: "/users/list",
+        component: List,
+        title: "List"
+      },
+      {
+        path: "/users/shop",
+        component: Shop,
+        title: "Shop"
+      }
+    ]
+  },
+  {
+    path: "/detail",
+    component: Detail,
+    title: "Detail"
+  },
+  {
+    path: "/goods",
+    component: Goods,
+    title: "Goods",
+    children: [
+      {
+        path: "/goods/phone",
+        component: Phone,
+        title: "Phone"
+      },
+      {
+        path: "/goods/meat",
+        component: Meat,
+        title: "Meat"
+      }, {
+        path: "/goods/clothes",
+        component: Clothes,
+        title: "Clothes"
+      }
+    ]
+  },
+  {
+    path: "/news",
+    component: News,
+    title: "News"
+  }
+]
+
+
+// const routeslist = [
+//   {
+//     path: "/users",
+//     component: Users,
+//     title: "Users",
+//   },
+//   {
+//     path: "/users/list",
+//     component: List,
+//     title: "List"
+//   },
+//   {
+//     path: "/detail",
+//     component: Detail,
+//     title: "Detail"
+//   },
+//   {
+//     path: "/goods",
+//     component: Goods,
+//     title: "Goods"
+//   },
+//   {
+//     path: "/news",
+//     component: News,
+//     title: "News"
+//   }
+// ]
+
+export default routes

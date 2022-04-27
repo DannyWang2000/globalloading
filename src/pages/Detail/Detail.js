@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../../components/Detail/Header'
-import { GetDetailApi } from '../../request/api'
 
+import { GetListApi } from '../../request/api'
 
-export default function Detail(props) {
+export default function Detail() {
+
     const [data, setData] = useState([])
 
-    const fullName = props.location.state.info
-
     useEffect(() => {
-        GetDetailApi(fullName).then(res => {
-            setData(res.data)
+        GetListApi().then((res) => {
+            // console.log(res.data.list)
+            setData(res.data.list)
         })
     }, [])
 
     return (
         <div>
-            <Header></Header>
             <ul>
                 {
                     data.map((item) => {
-                        return <li key={item.name}>{item.name}</li>
+                        return <li key={item.key}>{item.name}</li>
                     })
                 }
             </ul>
