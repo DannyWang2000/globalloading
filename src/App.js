@@ -43,7 +43,6 @@ const renderMenu = (routeList) => {
 
 
 function App(props) {
-  console.log(props)
   return (
     <Layout>
       <Sider trigger={null} collapsible>

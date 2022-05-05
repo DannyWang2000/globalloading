@@ -5,7 +5,7 @@ import { CHANGE_LOADING } from '../actions/actionType'
 
 // 配置项
 const axiosOption = {
-  baseURL: 'https://dev-v2.bundleb2b.net/apidoc-server/app/mock/55/api',
+  baseURL: 'http://127.0.0.1:8888/api/private/v1/',
   timeout: 5000
 }
 
@@ -20,6 +20,8 @@ instance.interceptors.request.use(function (config) {
     type: CHANGE_LOADING,
     payload: true
   })
+  // 为请求对象，添加token 验证的Authorization字段
+  config.headers.Authorization = window.sessionStorage.getItem('token')
 
   return config;
 }, function (error) {

@@ -27,7 +27,7 @@ function Top() {
           <Button type="primary" danger
             onClick={() => {
               message.success('退出成功，即将返回首页')
-              localStorage.clear()
+              window.sessionStorage.clear()
             }}
           >退出登录
           </Button>

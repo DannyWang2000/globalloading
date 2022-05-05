@@ -19,10 +19,13 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "indent": [0, 4],
         "no-undef": 0,
         "react/jsx-key": 0,
         "react/prop-types": 0,
         "quotes": 0,
-        "quote-props": 0
+        "quote-props": 0,
+        "no-unused-vars": 0,
+        "eslint-disable-next-line": 0
     }
 }

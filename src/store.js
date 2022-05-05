@@ -3,9 +3,9 @@ import { legacy_createStore as createStore, applyMiddleware, compose } from 'red
 import logger from 'redux-logger'
 
 import rootReducer from './reducers/index'
-// import thunk from 'redux-thunk'
+import thunk from 'redux-thunk'
 
-const middleware = []
+const middleware = [thunk]
 
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(logger)

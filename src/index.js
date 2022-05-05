@@ -23,7 +23,7 @@ root.render(
                 {/* <Route path="/" component={App} /> */}
                 <Route path="/login" component={Login} />
                 <Route path="/" render={() => {
-                    return localStorage.getItem("token") ?
+                    return window.sessionStorage.getItem("token") ?
                         <App /> : <Redirect to="/login" />
                 }} />
             </Switch>

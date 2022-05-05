@@ -12,7 +12,7 @@ export default (state = initState, action) => {
         case actionType.LOGIN_SUCCESS:
             return {
                 ...state,
-                username:action.payload,
+                username: action.payload,
                 isLogin: true
             }
         default:
